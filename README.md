@@ -4,6 +4,7 @@ When prompted by ">" u can input commands.
 
 Elevator contains: Elevator id, Current Floor, Target Floor, Called To Floor, Direction and Status.
 ![img.png](img.png)
+
 Available commands:
 
 status - prints out every elevator and its status. Single elevator can be used infinite amount of times after it completes it's planned route. Elevators move up and down as expected.
