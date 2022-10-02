@@ -2,7 +2,6 @@ package main.commands;
 
 import main.Elevator;
 import main.ElevatorManager;
-import main.ElevatorDirection;
 
 public class StatusCommand implements ElevatorCommandInterface{
 
@@ -28,19 +27,6 @@ public class StatusCommand implements ElevatorCommandInterface{
                         elevator.getDirection(),
                         elevator.getElevatorStatus()
                 ));
-                /*
-                if (elevator.getCurrentFloor() > elevator.getTargetFloor()){
-
-                    elevator.setDirection(ElevatorDirection.DOWN);
-
-                } else if (elevator.getCurrentFloor() < elevator.getTargetFloor()){
-
-                    elevator.setDirection(ElevatorDirection.UP);
-                } else {
-                    elevator.setDirection(ElevatorDirection.NONE);
-                }
-
-                 */
             }
         }
     }

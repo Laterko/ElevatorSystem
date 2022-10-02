@@ -1,5 +1,7 @@
 package main;
 
+import main.simulator.SimulatorManager;
+
 import java.util.ArrayList;
 
 public class ElevatorManager implements Runnable {
@@ -13,8 +15,18 @@ public class ElevatorManager implements Runnable {
    SimulatorManager simulatorManager;
 
     public ElevatorManager() {
-
         simulatorManager = new SimulatorManager(this);
+    }
+    public ElevatorManager(SimulatorManager simulatorManager) {
+        this.simulatorManager =  simulatorManager;
+    }
+
+    public SimulatorManager getSimulatorManager() {
+        return simulatorManager;
+    }
+
+    public void setSimulatorManager(SimulatorManager simulatorManager) {
+        this.simulatorManager = simulatorManager;
     }
 
     @Override
@@ -36,7 +48,6 @@ public class ElevatorManager implements Runnable {
 
             }
             while (true){
-                Thread.sleep(1000);
                 simulatorManager.simulate();
             }
         }

@@ -11,8 +11,6 @@ import java.util.Queue;
 public class PickupCommand implements ElevatorCommandInterface{
 
     private ElevatorManager elevatorManager;
-    private int calledToFloorInt;
-    private int targetFloorInt;
 
     public PickupCommand(ElevatorManager elevatorManager){
 
@@ -39,8 +37,8 @@ public class PickupCommand implements ElevatorCommandInterface{
             try {
                 first = Integer.parseInt(stringListToInt[0]);
                 second = Integer.parseInt(stringListToInt[1]);
-                queue.add(first);//calledToFloor
-                queue.add(second);//targetFloor
+                queue.add(first);
+                queue.add(second);
             }
             catch (Exception e){
                 System.out.println(e.getMessage());
@@ -70,16 +68,30 @@ public class PickupCommand implements ElevatorCommandInterface{
                 elevator.setCalledToFloor(queue.remove());
                 elevator.setTargetFloor(queue.remove());
 
-                elevator.setElevatorStatus(ElevatorStatus.RUNNING);
+                if(elevator.getCurrentFloor() != elevator.getCalledToFloor()){
+                    elevator.setElevatorStatus(ElevatorStatus.CALLED);
 
-                if(elevator.getCurrentFloor() > elevator.getTargetFloor()){
-                    elevator.setDirection(ElevatorDirection.DOWN);
-                }
-                else if(elevator.getCurrentFloor() < elevator.getTargetFloor()){
-                    elevator.setDirection(ElevatorDirection.UP);
-                }
-                else {
-                    elevator.setDirection(ElevatorDirection.NONE);
+                    if(elevator.getCurrentFloor() > elevator.getCalledToFloor()){
+                        elevator.setDirection(ElevatorDirection.DOWN);
+                    }
+                    else if(elevator.getCurrentFloor() < elevator.getCalledToFloor()){
+                        elevator.setDirection(ElevatorDirection.UP);
+                    }
+                    else {
+                        elevator.setDirection(ElevatorDirection.NONE);
+                    }
+                } else {
+                    elevator.setElevatorStatus(ElevatorStatus.RUNNING);
+
+                    if(elevator.getCurrentFloor() > elevator.getTargetFloor()){
+                        elevator.setDirection(ElevatorDirection.DOWN);
+                    }
+                    else if(elevator.getCurrentFloor() < elevator.getTargetFloor()){
+                        elevator.setDirection(ElevatorDirection.UP);
+                    }
+                    else {
+                        elevator.setDirection(ElevatorDirection.NONE);
+                    }
                 }
             }
         }
