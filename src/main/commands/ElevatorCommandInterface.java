@@ -1,5 +1,5 @@
 package main.commands;
 
 public interface ElevatorCommandInterface {
-    void RunCommand();
+    void RunCommand(String[] arguments);
 }

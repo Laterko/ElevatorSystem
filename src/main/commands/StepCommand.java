@@ -7,7 +7,7 @@ public class StepCommand implements ElevatorCommandInterface{
     }
 
     @Override
-    public void RunCommand() {
+    public void RunCommand(String[] arguments) {
         
     }
 }

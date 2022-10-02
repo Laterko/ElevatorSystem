@@ -10,7 +10,12 @@ public class ElevatorManager implements Runnable {
 
     public ArrayList<Elevator> getElevators(){ return elevators; }
 
+   SimulatorManager simulatorManager;
 
+    public ElevatorManager() {
+
+        simulatorManager = new SimulatorManager(this);
+    }
 
     @Override
     public void run() {
@@ -19,20 +24,26 @@ public class ElevatorManager implements Runnable {
             for (int i = 0; i < ELEVATORS_NUMBER; i++) {
 
                 synchronized (elevators){
-                    //zapisywanie i odczytywanie
+
                     elevators.add(new Elevator(
                             i,
                             0,
                             0,
                             0,
-                            ElevatorDirection.NONE ));
+                            ElevatorDirection.NONE,
+                            ElevatorStatus.STOPPED));
                 }
 
             }
+            while (true){
+                Thread.sleep(1000);
+                simulatorManager.simulate();
+            }
         }
         catch (Exception e){
-
+            System.out.println(e.getMessage());
         }
+
 
     }
 

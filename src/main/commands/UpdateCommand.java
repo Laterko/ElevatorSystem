@@ -11,7 +11,7 @@ public class UpdateCommand implements ElevatorCommandInterface{
     }
     //update mozna uzyc zeby zmienic skad startuje winda o id (int)
     @Override
-    public void RunCommand() {
+    public void RunCommand(String[] arguments) {
 
     }
 }
